@@ -1,9 +1,6 @@
 /* ui-cofre.js — tela do cofre (depois da entrada)
    Pastas/lista de credenciais, seletor de cor, janelas, backup */
 
-/* ui-cofre.js — tela do cofre (depois da entrada)
-   Pastas/lista de credenciais, seletor de cor, janelas, backup */
-
 let listaEl = null;
 
 function renderCofre() {
@@ -27,11 +24,6 @@ function renderCofre() {
       <div class="paleta">
         <span class="paleta-rot">Cor</span>
         ${htmlSeletorDeCor()}
-      </div>
-
-      <div class="paleta">
-        <span class="paleta-rot">Gatinho</span>
-        ${htmlPosicoesDoMascote()}
       </div>
 
       <div id="area-aviso"></div>
@@ -72,7 +64,6 @@ function renderCofre() {
   }
 
   ligarSeletorDeCor(el);
-  ligarPosicoesDoMascote(el);
 
   el.querySelectorAll("[data-visao]").forEach(b => {
     b.onclick = () => {
