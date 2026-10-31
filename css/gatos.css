@@ -1,0 +1,116 @@
+/* gatos.css — imagens em "caracteres" (ASCII)
+   1) o gatinho da entrada, no meio da tela: dormindo (com os "z"
+      subindo) e, quando a pessoa começa a digitar, no notebook
+   2) o cantinho animado: uma imagem por cor do tema, na ordem do
+      seletor (verde, clara, preto, rosa)
+
+   As imagens vêm de js/imagens.js (variáveis --img-*) e são
+   usadas como MÁSCARA: o desenho pega a cor do tema ativo. */
+
+/* 1) primeiro gatinho */
+.cat-stage {
+  position: relative; height: 272px; margin: 8px 0 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  color: var(--ink);
+}
+.cat-stage .cat { position: relative; width: 232px; height: 234px; }
+.cat-stage .cat-sleep,
+.cat-stage .cat-awake { position: absolute; inset: 0; filter: drop-shadow(0 0 5px var(--glow-color)); }
+.cat-stage .cat-awake { display: none; }
+.cat-stage.awake .cat-sleep { display: none; }
+.cat-stage.awake .cat-awake { display: block; animation: gato-pula .35s steps(4) 1; }
+@keyframes gato-pula { 0% { transform: translateY(8px) scaleY(.9); } 100% { transform: none; } }
+
+/* cada camada é uma máscara pintada com a cor do tema; todas do mesmo tamanho, então se encaixam */
+.cm {
+  position: absolute; inset: 0; display: block;
+  background: var(--ink);
+  -webkit-mask: var(--m) center bottom / contain no-repeat;
+          mask: var(--m) center bottom / contain no-repeat;
+}
+.cm-dormindo { --m: var(--img-dormindo); transform-origin: 50% 100%; animation: gato-respira 3.4s ease-in-out infinite; }
+.cm-notebook { --m: var(--img-notebook); animation: nota-digita .5s steps(2) infinite; }
+.cm-z { opacity: 0; animation: gato-z 3.2s ease-out infinite; }
+.cm-z.z1 { --m: var(--img-z1); animation-delay: 0s; }
+.cm-z.z2 { --m: var(--img-z2); animation-delay: .9s; }
+.cm-z.z3 { --m: var(--img-z3); animation-delay: 1.8s; }
+
+@keyframes gato-respira { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.012, 1.022); } }
+/* os "z" sobem e somem, um depois do outro */
+@keyframes gato-z {
+  0%   { opacity: 0; transform: translate(0, 10px); }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(8px, -20px); }
+}
+
+@keyframes nota-digita { 0% { transform: translateY(0); } 100% { transform: translateY(2px); } }
+
+.cat-stage .caption { min-height: 20px; margin-top: 10px; font-size: 12.5px; text-align: center; color: var(--ink-2); }
+.cat-stage .caption .cap-awake { display: none; }
+.cat-stage.awake .caption .cap-awake { display: inline; }
+.cat-stage.awake .caption .cap-sleep { display: none; }
+
+@media (max-width: 560px) {
+  .cat-stage { height: 244px; }
+  .cat-stage .cat { width: 204px; height: 206px; }
+}
+
+/*2) cantinho animado*/
+.canto {
+  --canto-img: var(--img-canto-verde);
+  --razao: 340 / 536;
+  --borda: 10px;
+  --topo: 56px;
+  position: fixed; top: var(--topo); right: var(--borda); z-index: 40;
+  pointer-events: auto; cursor: grab; touch-action: none;
+  -webkit-user-select: none; user-select: none;
+  height: clamp(110px, 24vh, 200px); aspect-ratio: var(--razao);
+  filter: drop-shadow(0 0 5px var(--glow-color));
+  animation: canto-flutua 3.8s ease-in-out infinite;
+}
+.canto[data-pos="se"] { top: var(--topo); left: var(--borda); right: auto; bottom: auto; }
+.canto[data-pos="sd"] { top: var(--topo); right: var(--borda); left: auto; bottom: auto; }
+.canto[data-pos="ie"] { bottom: var(--borda); left: var(--borda); top: auto; right: auto; }
+.canto[data-pos="id"] { bottom: var(--borda); right: var(--borda); top: auto; left: auto; }
+.canto[data-pos="livre"] { right: auto; bottom: auto; }
+.canto.arrastando { cursor: grabbing; animation: none; }
+.canto-img {
+  display: block; width: 100%; height: 100%;
+  background: var(--ink); opacity: .92;
+  -webkit-mask: var(--canto-img) center / contain no-repeat;
+          mask: var(--canto-img) center / contain no-repeat;
+  animation: canto-pisca 7s steps(1) infinite;
+}
+
+/* seletores de tema */
+:root[data-theme="verde"] .canto { --canto-img: var(--img-canto-verde); --razao: 340 / 536; }
+:root[data-theme="clara"] .canto { --canto-img: var(--img-canto-clara); --razao: 340 / 418; }
+:root[data-theme="preto"] .canto { --canto-img: var(--img-canto-preto); --razao: 340 / 408; }
+:root[data-theme="rosa"]  .canto { --canto-img: var(--img-canto-rosa);  --razao: 340 / 415; }
+
+@keyframes canto-flutua { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+@keyframes canto-pisca {
+  0%, 90%, 94%, 100% { opacity: .92; }
+  91% { opacity: .35; }
+  92% { opacity: .8; }
+  93% { opacity: .2; }
+}
+/* carregamento de imagem de cima para baixo ao trocar de tema */
+.canto.trocando .canto-img { animation: canto-surge .8s steps(8) both, canto-pisca 7s steps(1) .8s infinite; }
+@keyframes canto-surge { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+@media (max-width: 560px) {
+  .canto { --borda: 6px; --topo: 54px; height: 96px; }
+  body.com-player .canto[data-pos="ie"],
+  body.com-player .canto[data-pos="id"] { bottom: 196px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .canto, .canto-img, .canto.trocando .canto-img,
+  .cm-dormindo, .cm-notebook, .cm-z, .cat-stage.awake .cat-awake { animation: none; }
+  .cm-z { opacity: 1; }
+}
+
+.posicoes { display: flex; gap: 8px; flex-wrap: wrap; }
+.posicoes button { min-width: 44px; }

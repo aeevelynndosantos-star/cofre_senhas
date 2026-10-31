@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="verde">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cofre de senhas</title>
+
+<!-- estilos: paletas (temas) -> base (moldura/layout) -> componentes (botões, inputs, etc) -> player (player de música) -> gatos (efeitos de animação) -->
+<link rel="stylesheet" href="css/temas.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/player.css">
+<link rel="stylesheet" href="css/gatos.css">
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- cantinho de animação -->
+<div class="canto" id="canto" aria-hidden="true"><i class="canto-img"></i></div>
+
+<!-- música de dentro do cofre-->
+<div class="player" id="player" role="group" hidden aria-label="Player de música">
+  <div class="lcd">
+    <div class="lcd-track" id="pl-nome">♪ ---</div>
+    <div class="lcd-sub"><span id="pl-estado">PARADO</span><span id="pl-num">01/03</span></div>
+    <div class="lcd-bar"><div id="pl-prog"></div></div>
+  </div>
+  <div class="keys">
+    <button type="button" id="pl-restart" title="Reiniciar faixa" aria-label="Reiniciar faixa">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.2a6.8 6.8 0 1 1-6.4 4.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M3.2 3.2v7.4h7.4z"/></svg>
+    </button>
+    <button type="button" id="pl-prev" title="Faixa anterior" aria-label="Faixa anterior">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="6" width="2.6" height="12"/><path d="M19 6v12L9 12z"/></svg>
+    </button>
+    <button type="button" id="pl-playpause" title="Tocar / pausar" aria-label="Tocar"></button>
+    <button type="button" id="pl-next" title="Próxima faixa" aria-label="Próxima faixa">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6v12l10-6z"/><rect x="16.4" y="6" width="2.6" height="12"/></svg>
+    </button>
+    <button type="button" id="pl-stop" title="Parar" aria-label="Parar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- scripts -->
+<script src="js/imagens.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/crypto.js"></script>
+<script src="js/vault.js"></script>
+<script src="js/contas.js"></script>
+<script src="js/tema.js"></script>
+<script src="js/efeitos.js"></script>
+<script src="js/player.js"></script>
+<script src="js/ui-entrada.js"></script>
+<script src="js/ui-cofre.js"></script>
+<script src="js/gatos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

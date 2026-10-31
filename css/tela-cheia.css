@@ -1,0 +1,54 @@
+/* dentro do cofre, a moldura do monitor cobre
+   a tela toda (mesma moldura da tela de entrada, só que grande).
+   A classe body.modo-cofre é ligada/desligada por js/tela-cheia.js. */
+
+body.modo-cofre { overflow: hidden; }
+body.modo-cofre #app { max-width: none; margin: 0; padding: 0; }
+
+/* a moldura vira a janela inteira */
+body.modo-cofre .monitor:not(.estreito) {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; flex-direction: column;
+  max-width: none; margin: 0;
+  border-width: 6px; border-radius: 0;
+}
+
+body.modo-cofre .monitor:not(.estreito) .screen {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto;
+
+  /* conteúdo centralizado, com no máximo ~1100px de largura */
+  padding-inline: max(24px, calc((100% - 1100px) / 2));
+  scrollbar-width: thin; scrollbar-color: var(--ink-3) var(--field);
+}
+body.modo-cofre .monitor:not(.estreito) .mon-foot { flex: 0 0 72px; }
+body.modo-cofre.com-player #app { padding-bottom: 0; }
+body.modo-cofre.com-player .monitor:not(.estreito) { bottom: 112px; }
+
+.monitor.desligando {
+  transform-origin: 50% 50%;
+  animation: crt-desliga .48s ease-in forwards;
+  pointer-events: none;
+}
+@keyframes crt-desliga {
+  0%   { transform: scale(1, 1);      filter: brightness(1); opacity: 1; }
+  60%  { transform: scale(1, .006);   filter: brightness(3); opacity: 1; }
+  100% { transform: scale(0, .006);   filter: brightness(3); opacity: 0; }
+}
+
+@media (max-width: 560px) {
+  body.modo-cofre .monitor:not(.estreito) { border-width: 4px; }
+  body.modo-cofre .monitor:not(.estreito) .screen { padding-inline: 14px; }
+  body.modo-cofre .monitor:not(.estreito) .mon-foot { flex-basis: 60px; }
+  body.modo-cofre.com-player .monitor:not(.estreito) { bottom: 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .monitor.desligando { animation: none; opacity: 0; transition: opacity .2s; }
+}
+.monitor.fantasma {
+  position: fixed; inset: 0; z-index: 260;
+  display: flex; flex-direction: column;
+  max-width: none; margin: 0; border-width: 6px; border-radius: 0;
+  pointer-events: none;
+}
+.monitor.fantasma .screen { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.monitor.fantasma .mon-foot { flex: 0 0 72px; }

@@ -1,0 +1,59 @@
+/* tela de abertura com o gatinho dormindo
+   Cores fixas (preto no papel branco), de propósito: não
+   seguem o tema, igual à imagem original. */
+
+body.com-intro { overflow: hidden; }
+
+.intro {
+  position: fixed; inset: 0; z-index: 250;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  padding: 16px;
+  background: #fff; color: #000; text-shadow: none;
+  cursor: pointer;
+  animation: intro-entra .5s ease both;
+}
+.intro.saindo { opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+@keyframes intro-entra { from { opacity: 0; } to { opacity: 1; } }
+
+.intro-gato svg { display: block; width: min(88vw, 70vh, 560px); height: auto; overflow: visible; }
+
+.gato-todo { animation: gato-aparece 1.6s steps(8) both; }
+@keyframes gato-aparece { from { opacity: 0; } to { opacity: 1; } }
+
+  .gato-corpo {
+  transform-box: fill-box; transform-origin: 50% 100%;
+  animation: gato-respira 3.4s ease-in-out 1.4s infinite;
+}
+@keyframes gato-respira { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.012, 1.02); } }
+
+
+.gato-rabo {
+  transform-box: fill-box; transform-origin: 100% 50%;
+  animation: gato-rabo 4s ease-in-out 1.4s infinite;
+}
+@keyframes gato-rabo { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-2.2deg); } }
+
+.gato-z {
+  font-family: "Courier New", Courier, monospace; font-weight: 700; fill: #000;
+  opacity: 0; animation: gato-z 3.2s ease-out infinite;
+}
+.gato-z.z1 { animation-delay: 1.2s; }
+.gato-z.z2 { animation-delay: 2.0s; }
+.gato-z.z3 { animation-delay: 2.8s; }
+@keyframes gato-z {
+  0%   { opacity: 0; transform: translate(0, 14px); }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(14px, -26px); }
+}
+
+.intro-dica {
+  margin: 0; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-align: center;
+  animation: intro-pisca 1.4s steps(1) infinite;
+}
+@keyframes intro-pisca { 50% { opacity: .25; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro, .gato-todo, .gato-corpo, .gato-rabo, .intro-dica { animation: none; }
+  .gato-z { animation: none; opacity: 1; }
+}
