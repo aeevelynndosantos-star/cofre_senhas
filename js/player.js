@@ -9,8 +9,10 @@ const MUSICAS = [
   { nome: "Coldplay - A Sky Full Of Stars", arquivo: PASTA + "coldplay-a-sky-full-of-stars.mp3" },
   { nome: "Alok - Never Let Me Go",         arquivo: PASTA + "alok-never-let-me-go.mp3" },
   { nome: "Alok - Hear Me Now",             arquivo: PASTA + "alok-hear-me-now.mp3" },
+  { nome: "Vintage Culture - I Will Find",  arquivo: PASTA + "vintage-culture-i-will-find.mp3" },
   { nome: "Rubel - Grão de Areia",          arquivo: PASTA + "rubel-grao-de-areia.mp3" },
   { nome: "Coldplay - Paradise",            arquivo: PASTA + "Coldplay-Paradise.mp3" },
+  { nome: "Twenty One Pilots",              arquivo: PASTA + "twenty-onepilots.mp3" },
   { nome: "Tiko's Groove",                  arquivo: PASTA + "TIKOS-GROOVE-feat.mp3" },
 ];
 
