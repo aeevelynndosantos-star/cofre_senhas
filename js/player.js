@@ -4,17 +4,14 @@ obs: Foi utilizado Y2mate para baixar as músicas */
 const PASTA = "musicas/musicas/";
 
 const MUSICAS = [
-  { nome: "Avicii - Waiting For Love",         arquivo: PASTA + "avicii-waiting-for-love.mp3" },
-  { nome: "Post Malone - Sunflower",           arquivo: PASTA + "post-malone-sunflower.mp3" },
-  { nome: "Coldplay - A Sky Full Of Stars",    arquivo: PASTA + "coldplay-a-sky-full-of-stars.mp3" },
-  { nome: "Mike Posner - I Took A Pill In Ibiza", arquivo: PASTA + "mike-posner-i-took-a-pill-in-ibiza.mp3" },
-  { nome: "Alok - Never Let Me Go",            arquivo: PASTA + "alok-never-let-me-go.mp3" },
-  { nome: "Alok - Hear Me Now",                arquivo: PASTA + "alok-hear-me-now.mp3" },
-  { nome: "Vintage Culture - I Will Find",     arquivo: PASTA + "vintage-culture-i-will-find.mp3" },
-  { nome: "Rubel - Grão de Areia",             arquivo: PASTA + "rubel-grao-de-areia.mp3" },
-  { nome: "Coldplay-Paradise",             arquivo: PASTA + "coldplay-paradise.mp3" },
-  { nome: "twenty-onepilots",             arquivo: PASTA + "twenty-onepilots.mp3" },
-  { nome: "TIKO'S-GROOVE-feat",             arquivo: PASTA + "tiko's-groove-feat.mp3" },
+  { nome: "Avicii - Waiting For Love",      arquivo: PASTA + "avicii-waiting-for-love.mp3" },
+  { nome: "Post Malone - Sunflower",        arquivo: PASTA + "post-malone-sunflower.mp3" },
+  { nome: "Coldplay - A Sky Full Of Stars", arquivo: PASTA + "coldplay-a-sky-full-of-stars.mp3" },
+  { nome: "Alok - Never Let Me Go",         arquivo: PASTA + "alok-never-let-me-go.mp3" },
+  { nome: "Alok - Hear Me Now",             arquivo: PASTA + "alok-hear-me-now.mp3" },
+  { nome: "Rubel - Grão de Areia",          arquivo: PASTA + "rubel-grao-de-areia.mp3" },
+  { nome: "Coldplay - Paradise",            arquivo: PASTA + "Coldplay-Paradise.mp3" },
+  { nome: "Tiko's Groove",                  arquivo: PASTA + "TIKOS-GROOVE-feat.mp3" },
 ];
 
 const PL_ICONES = {
